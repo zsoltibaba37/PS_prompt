@@ -1,32 +1,42 @@
-﻿# ----------------------------
-# Linux-style színes prompt Windows PowerShell 7-hez
-# ----------------------------
+﻿# ----------------------------------------------------
+# Linux-style color prompt for Windows PowerShell 7
+# ----------------------------------------------------
 
-# ANSI színek
+# ANSI colors
 $esc = [char]27
-$ColorUserHost = "${esc}[32m"   # zöld
+$ColorUserHost = "${esc}[32m"   # green
 $ColorCwd      = "${esc}[36m"   # cyan
 $ColorGit      = "${esc}[35m"   # magenta
-$ColorSymbol   = "${esc}[33m"   # sárga
+$ColorSymbol   = "${esc}[33m"   # yellow
 $ColorReset    = "${esc}[0m"
 
-# Linuxos aliasok
-Set-Alias ll Get-ChildItem -Scope Global
-Set-Alias la "Get-ChildItem -Force" -Scope Global
+function Get-ChildItemEx {
+    param(
+        [string[]]$Path = ".",
+        [string[]]$Exclude = ".*"
+    )
+    Get-ChildItem -Path $Path -Exclude $Exclude
+}
+
+
+
+# Linux aliases
+Set-Alias ll Get-ChildItemEx
+Set-Alias la Get-ChildItem -Scope Global
 Set-Alias grep Select-String -Scope Global
 
-# cat és rm Windows-ban
+# cat and rm in Windows
 function cat { param($file) Get-Content $file }
 function rm { param($file) Remove-Item $file -Force }
 function touch { param($file) New-Item -ItemType File -Path $file -Force }
 
-# Prompt függvény
+# Prompt function
 function prompt {
     $user = [System.Environment]::UserName
     $hostName = [System.Environment]::MachineName
     $userHost = "[$user@$hostName]-"
 
-    # rövidített útvonal
+    # shortcut
     $cwd = (Get-Location).Path -replace [regex]::Escape($env:USERPROFILE), '~'
 
     # git branch
@@ -42,7 +52,7 @@ function prompt {
         } catch {}
     }
 
-    # színes prompt string
+    # colored prompt string
     $promptString = ""
     $promptString += "$ColorUserHost$userHost$ColorReset"
     $promptString += "$ColorCwd[$cwd$gitBranch]$ColorReset"

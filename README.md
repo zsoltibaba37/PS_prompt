@@ -2,7 +2,7 @@
 ---
 
 <p>
-I would like a prompt like under linux.
+I would like a prompt like under linux.<br>
 This is roughly how the prompt looks to me under linux.
 </p>
 
