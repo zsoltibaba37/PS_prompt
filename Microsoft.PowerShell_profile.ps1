@@ -18,8 +18,6 @@ function Get-ChildItemEx {
     Get-ChildItem -Path $Path -Exclude $Exclude
 }
 
-
-
 # Linux aliases
 Set-Alias ll Get-ChildItemEx
 Set-Alias la Get-ChildItem -Scope Global
