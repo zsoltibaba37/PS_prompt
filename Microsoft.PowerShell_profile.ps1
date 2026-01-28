@@ -9,6 +9,7 @@ $ColorCwd      = "${esc}[36m"   # cyan
 $ColorGit      = "${esc}[35m"   # magenta
 $ColorSymbol   = "${esc}[33m"   # yellow
 $ColorReset    = "${esc}[0m"
+$PSStyle.FileInfo.Directory = ""
 
 function Get-ChildItemEx {
     param(
