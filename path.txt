@@ -1,1 +1,5 @@
-C:\Users\<username>\Documents\WindowsPowerShell
+PS 7.5
+C:\Users\<username>\Documents\PowerShell\
+
+PS 5.1
+C:\Users\<username>\Documents\WindowsPowerShell\
